@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.github.joannakaminska'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Testowanie i API
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+
+    // Infrastruktura (Testcontainers)
+    testImplementation "org.testcontainers:testcontainers:1.19.7"
+    testImplementation "org.testcontainers:junit-jupiter:1.19.7"
+    testImplementation "org.testcontainers:postgresql:1.19.7"
+
+    // Narzędzia
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+
+    // Logger - potrzebny, żeby widzieć co Testcontainers robi w tle
+    testImplementation 'org.slf4j:slf4j-simple:2.0.9'
+
+    // Sterownik JDBC do PostgreSQL
+    testRuntimeOnly 'org.postgresql:postgresql:42.7.2'
+}
+
+test {
+    useJUnitPlatform()
+}
