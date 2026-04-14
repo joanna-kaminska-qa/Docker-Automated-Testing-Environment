@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # 1. Baza danych
+  baza-projektu:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=joanna
+      - POSTGRES_PASSWORD=tajnehaslo
+      - POSTGRES_DB=testy_db
+    # Port bazy, żebyś mogła się do niej wpiąć np. z DBeavera
+    ports:
+      - "5432:5432"
+
+  # 2. Adminer - panel przez który będziemy się logować
+  panel-adminer:
+    image: adminer
+    ports:
+      - "8888:8080" # Wejdziesz na to przez localhost:8888
+    depends_on:
+      - baza-projektu
+
+  # 3. Selenium - nasz robot z podglądem
+  przegladarka-robot:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444" # Dla Javy (kierowcy)
+      - "7900:7900" # Dla Ciebie (podgląd pulpitu)
+    shm_size: 2gb
+
+  # 3. Selenium - testy
+  moje-automaty-selenium:
+    build: .
+    depends_on:
+      - panel-adminer
+      - przegladarka-robot
+    environment:
+      - TESTCONTAINERS_HOST_OVERRIDE=host.docker.internal
+    command: ./gradlew test --tests "seleniumwithcompose.*"

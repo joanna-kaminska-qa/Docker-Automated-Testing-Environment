@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  # Serwis Twoich testów
+  moje-automaty:
+    build: .
+    image: moje-testy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TESTCONTAINERS_HOST_OVERRIDE=host.docker.internal
+    depends_on:
+      - moja-baza  # Mówi: "Najpierw odpal bazę, potem testy"
+
+  # Nowy serwis: Prawdziwa baza danych
+  moja-baza:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=joanna
+      - POSTGRES_PASSWORD=tajnehaslo
+      - POSTGRES_DB=testy_db
+    ports:
+      - "5432:5432"

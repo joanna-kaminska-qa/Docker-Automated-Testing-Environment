@@ -10,25 +10,27 @@ repositories {
 }
 
 dependencies {
-    // Testowanie i API
+    // JUNIT & TESTING
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'io.rest-assured:rest-assured:5.4.0'
-
-    // Infrastruktura (Testcontainers)
-    testImplementation "org.testcontainers:testcontainers:1.19.7"
-    testImplementation "org.testcontainers:junit-jupiter:1.19.7"
-    testImplementation "org.testcontainers:postgresql:1.19.7"
-
-    // Narzędzia
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
     testImplementation 'org.hamcrest:hamcrest:2.2'
 
-    // Logger - potrzebny, żeby widzieć co Testcontainers robi w tle
+    // TESTCONTAINERS CORE
+    testImplementation "org.testcontainers:testcontainers:1.19.7"
+    testImplementation "org.testcontainers:junit-jupiter:1.19.7"
+
+    // TESTCONTAINERS MODULES (Baza i Selenium)
+    testImplementation "org.testcontainers:postgresql:1.19.7"
+    testImplementation "org.testcontainers:selenium:1.19.7"
+
+    // DATABASE DRIVERS & UTILS
+    testRuntimeOnly 'org.postgresql:postgresql:42.7.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
     testImplementation 'org.slf4j:slf4j-simple:2.0.9'
 
-    // Sterownik JDBC do PostgreSQL
-    testRuntimeOnly 'org.postgresql:postgresql:42.7.2'
+    // SELENIUM LIBRARIES
+    implementation 'org.seleniumhq.selenium:selenium-java:4.18.1'
 }
 
 test {
