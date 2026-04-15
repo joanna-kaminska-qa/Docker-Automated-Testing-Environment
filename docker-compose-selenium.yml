@@ -28,7 +28,7 @@ services:
       - "7900:7900" # Dla Ciebie (podgląd pulpitu)
     shm_size: 2gb
 
-  # 3. Selenium - testy
+  # 4. Selenium - testy
   moje-automaty-selenium:
     build: .
     depends_on:
@@ -37,3 +37,5 @@ services:
     environment:
       - TESTCONTAINERS_HOST_OVERRIDE=host.docker.internal
     command: ./gradlew test --tests "seleniumwithcompose.*"
+    volumes:
+      - .:/app
