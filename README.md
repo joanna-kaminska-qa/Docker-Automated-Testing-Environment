@@ -1,5 +1,14 @@
 # Docker - Automated Testing Environment
 
+![Java](https://img.shields.io/badge/Java-21-007396?style=flat&logo=openjdk&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Environment-2496ED?style=flat&logo=docker&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=flat&logo=postgresql&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-Grid-43B02A?style=flat&logo=selenium&logoColor=white)
+![JUnit5](https://img.shields.io/badge/JUnit-5-25A162?style=flat&logo=junit5&logoColor=white)
+![Testcontainers](https://img.shields.io/badge/Testcontainers-Integration-orange?style=flat)
+![Gradle](https://img.shields.io/badge/Gradle-Build-02303A?style=flat&logo=gradle&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Containerized-brightgreen?style=flat)
+
 This project is a robust, containerized environment for automated testing of a **Habit Tracker** application. It leverages **Docker**, **Testcontainers**, and **Selenium Grid** to ensure high-quality integration and UI testing.
 
 ---
@@ -62,7 +71,7 @@ To keep the Docker environment clean and free up disk space from old test contai
 ```bash
 docker system prune -f
 ```
-
+---
 ## License
 
 This project is licensed under the **MIT License**.  
